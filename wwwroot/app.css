@@ -1,3 +1,13 @@
+@import url('./css/landing.css');
+@import url('./css/signin.css');
+@import url('./css/signup.css');
+@import url('./css/clientes.css');
+@import url('./css/dashboard-layout.css');
+@import url('./css/inicio.css');
+@import url('./css/inventario.css');
+@import url('./css/reportes.css');
+@import url('./css/ventas.css');
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
