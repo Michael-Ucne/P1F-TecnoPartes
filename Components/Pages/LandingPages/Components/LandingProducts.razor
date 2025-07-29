@@ -1,0 +1,148 @@
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components
+@using P1F_TecnoPartes.Services
+@using Microsoft.JSInterop
+@inject CartService CartService
+@inject IJSRuntime JS
+
+<section id="productos" class="py-5">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
+            <h2 class="mb-3 mb-md-0 text-center text-md-start">Productos Destacados</h2>
+            <a href="#" class="btn btn-outline-primary btn-sm">Ver Todos</a>
+        </div>
+        <div class="row g-3 g-md-4">
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <div class="position-relative product-image-container">
+                        <span class="badge bg-danger position-absolute product-badge">-15%</span>
+                        <img src="/images/procesador-intel.jpg" 
+                             class="card-img-top product-image" 
+                             alt="Procesador Intel i9" 
+                             loading="lazy" />
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <h6 class="card-title product-title">Procesador Intel Core i9-12900K</h6>
+                        <p class="card-text product-description">Procesador de última generación con 16 núcleos y tecnología híbrida.</p>
+                        <div class="mt-auto">
+                            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2">
+                                <div class="price-section">
+                                    <small class="text-muted text-decoration-line-through me-1 original-price">$649.99</small>
+                                    <span class="current-price">$549.99</span>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm add-to-cart-btn" @onclick="() => AddProduct1()">
+                                    <i class="bi bi-cart-plus me-1"></i>
+                                    <span class="d-none d-sm-inline">Agregar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <div class="position-relative product-image-container">
+                        <span class="badge bg-primary position-absolute product-badge">Nuevo</span>
+                        <img src="/images/nvidia-rtx-4090.jpg" 
+                             class="card-img-top product-image" 
+                             alt="NVIDIA RTX 4090" 
+                             loading="lazy" />
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <h6 class="card-title product-title">NVIDIA GeForce RTX 4090</h6>
+                        <p class="card-text product-description">La tarjeta gráfica más potente para gaming y creación de contenido.</p>
+                        <div class="mt-auto">
+                            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2">
+                                <div class="price-section">
+                                    <span class="current-price">$1,599.99</span>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm add-to-cart-btn" @onclick="() => AddProduct2()">
+                                    <i class="bi bi-cart-plus me-1"></i>
+                                    <span class="d-none d-sm-inline">Agregar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <div class="position-relative product-image-container">
+                        <span class="badge bg-danger position-absolute product-badge">-20%</span>
+                        <img src="/images/ram-corsair.jpg" 
+                             class="card-img-top product-image" 
+                             alt="Corsair Vengeance RGB" 
+                             loading="lazy" />
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <h6 class="card-title product-title">Corsair Vengeance RGB Pro 32GB</h6>
+                        <p class="card-text product-description">Memoria RAM DDR4 de alto rendimiento con iluminación RGB personalizable.</p>
+                        <div class="mt-auto">
+                            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2">
+                                <div class="price-section">
+                                    <small class="text-muted text-decoration-line-through me-1 original-price">$179.99</small>
+                                    <span class="current-price">$149.99</span>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm add-to-cart-btn" @onclick="() => AddProduct3()">
+                                    <i class="bi bi-cart-plus me-1"></i>
+                                    <span class="d-none d-sm-inline">Agregar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <div class="position-relative product-image-container">
+                        <span class="badge bg-warning text-dark position-absolute product-badge">Oferta</span>
+                        <img src="/images/samsung-980-pro.jpg" 
+                             class="card-img-top product-image" 
+                             alt="Samsung 980 PRO" 
+                             loading="lazy" />
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <h6 class="card-title product-title">Samsung 980 PRO NVMe SSD 1TB</h6>
+                        <p class="card-text product-description">SSD NVMe ultrarrápido con velocidades de hasta 7,000 MB/s.</p>
+                        <div class="mt-auto">
+                            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2">
+                                <div class="price-section">
+                                    <span class="current-price">$129.99</span>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm add-to-cart-btn" @onclick="() => AddProduct4()">
+                                    <i class="bi bi-cart-plus me-1"></i>
+                                    <span class="d-none d-sm-inline">Agregar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private void AddProduct1()
+    {
+        CartService.AddItem(1, "Procesador Intel Core i9-12900K", 549.99m, "/images/procesador-intel.jpg");
+    }
+
+    private void AddProduct2()
+    {
+        CartService.AddItem(2, "NVIDIA GeForce RTX 4090", 1599.99m, "/images/nvidia-rtx-4090.jpg");
+    }
+
+    private void AddProduct3()
+    {
+        CartService.AddItem(3, "Corsair Vengeance RGB Pro 32GB", 149.99m, "/images/ram-corsair.jpg");
+    }
+
+    private void AddProduct4()
+    {
+        CartService.AddItem(4, "Samsung 980 PRO NVMe SSD 1TB", 129.99m, "/images/samsung-980-pro.jpg");
+    }
+} 
