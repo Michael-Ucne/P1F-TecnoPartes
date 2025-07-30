@@ -1,4 +1,4 @@
-/* ===== SESION DE OFERTAS VERSION DESKTOP ===== */
+/* ===== SECCION DE OFERTAS VERSION DESKTOP ===== */
 
 #ofertas {
     background: var(--bg-primary);
@@ -154,7 +154,7 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* ===== SESION DE OFERTAS VERSION MOBILE ===== */
+/* ===== SECCION DE OFERTAS VERSION MOBILE ===== */
 
 @media (max-width: 991.98px) {
     #ofertas {

@@ -1,4 +1,4 @@
-/* ===== SESION DE FOOTER VERSION DESKTOP ===== */
+/* ===== SECCION DE FOOTER VERSION DESKTOP ===== */
 
 .footer-section {
     background-color: var(--bg-secondary);
@@ -227,7 +227,7 @@
     border-color: var(--primary);
 }
 
-/* ===== SESION DE FOOTER VERSION MOBILE ===== */
+/* ===== SECCION DE FOOTER VERSION MOBILE ===== */
 
 @media (max-width: 991.98px) {
     .footer-section {

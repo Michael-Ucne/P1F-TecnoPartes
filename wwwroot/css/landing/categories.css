@@ -1,4 +1,4 @@
-/* ===== SESION DE CATEGORIAS VERSION DESKTOP ===== */
+/* ===== SECCION DE CATEGORIAS VERSION DESKTOP ===== */
 
 #categorias {
     background-color: var(--bg-secondary) !important;
@@ -98,7 +98,7 @@
     text-decoration: none;
 }
 
-/* ===== SESION DE CATEGORIAS VERSION MOBILE ===== */
+/* ===== SECCION DE CATEGORIAS VERSION MOBILE ===== */
 
 @media (max-width: 991.98px) {
     #categorias {

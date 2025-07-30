@@ -1,4 +1,4 @@
-/* ===== SESION DE HERO VERSION DESKTOP ===== */
+/* ===== SECCION DE HERO VERSION DESKTOP ===== */
 
 #inicio {
     min-height: calc(100vh - 80px);
@@ -39,7 +39,7 @@
     max-width: 600px;
 }
 
-/* ===== SESION DE HERO VERSION MOBILE ===== */
+/* ===== VERSION MOBILE ===== */
 
 @media (max-width: 991.98px) {
     #inicio {
