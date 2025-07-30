@@ -1,0 +1,114 @@
+@page "/sign-in"
+@using Microsoft.AspNetCore.Components.Forms
+@using System.ComponentModel.DataAnnotations
+@inject NavigationManager NavigationManager
+
+<PageTitle>Iniciar Sesión - TecnoPartes</PageTitle>
+
+<HeadContent>
+    <link href="./css/signin.css" rel="stylesheet" />
+    <script src="./js/password-toggle.js"></script>
+</HeadContent>
+
+<div class="signin-container">
+    <div class="signin-card">
+        <div class="signin-header">
+            <h1 class="signin-title">¡Bienvenido de nuevo!</h1>
+            <p class="signin-subtitle">Inicia sesión en tu cuenta de TecnoPartes</p>
+        </div>
+
+        <EditForm Model="@model" OnValidSubmit="HandleValidSubmit" class="signin-form">
+            <DataAnnotationsValidator />
+            
+            <div class="form-group">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="bi bi-envelope"></i>
+                    </div>
+                    <InputText id="email" @bind-Value="model.Email" class="form-input" placeholder="correo@ejemplo.com" />
+                </div>
+                <ValidationMessage For="@(() => model.Email)" class="validation-message" />
+            </div>
+
+            <div class="form-group">
+                <div class="form-label-container">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <a href="/forgot-password" class="forgot-password-link">¿Olvidaste tu contraseña?</a>
+                </div>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="bi bi-lock"></i>
+                    </div>
+                    <InputText id="password" @bind-Value="model.Password" type="@(showPassword ? "text" : "password")" class="form-input" placeholder="••••••••" autocomplete="current-password" />
+                    <button id="password-toggle" class="password-toggle-btn" type="button" @onclick="TogglePasswordVisibility" aria-label="@(showPassword ? "Ocultar contraseña" : "Mostrar contraseña")" tabindex="-1">
+                        <i class="bi @(showPassword ? "bi-eye-slash" : "bi-eye")"></i>
+                    </button>
+                </div>
+                <ValidationMessage For="@(() => model.Password)" class="validation-message" />
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="signin-btn" disabled="@isLoading">
+                    @if (isLoading)
+                    {
+                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        <span class="signin-btn-text">Iniciando sesión...</span>
+                    }
+                    else
+                    {
+                        <i class="bi bi-box-arrow-in-right me-2"></i>
+                        <span class="signin-btn-text">Iniciar Sesión</span>
+                    }
+                </button>
+            </div>
+
+            <div class="signin-footer">
+                <p class="signup-prompt">
+                    <span class="signup-text">¿No tienes una cuenta?</span>
+                    <a href="/sign-up" class="signup-link">Regístrate aquí</a>
+                </p>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private SignInModel model = new();
+    private bool showPassword = false;
+    private bool isLoading = false;
+
+    private async Task HandleValidSubmit()
+    {
+        isLoading = true;
+        StateHasChanged();
+        
+        try
+        {
+            await Task.Delay(1500);
+            NavigationManager.NavigateTo("/dashboard/inicio");
+        }
+        catch (Exception)
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private void TogglePasswordVisibility()
+    {
+        showPassword = !showPassword;
+        InvokeAsync(StateHasChanged);
+    }
+
+    public class SignInModel
+    {
+        [Required(ErrorMessage = "El correo electrónico es requerido")]
+        [EmailAddress(ErrorMessage = "Ingresa un correo electrónico válido")]
+        public string Email { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "La contraseña es requerida")]
+        [StringLength(100, ErrorMessage = "La contraseña debe tener al menos {2} caracteres.", MinimumLength = 6)]
+        public string Password { get; set; } = string.Empty;
+    }
+}
