@@ -31,8 +31,16 @@
 }
 
 .signin-container::before {
-    display: none;
-    content: none;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 40% 20%, rgba(108, 99, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(40, 167, 69, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 20% 60%, rgba(23, 162, 184, 0.06) 0%, transparent 50%);
+    z-index: 0;
 }
 
 .signin-card {
@@ -46,6 +54,8 @@
     margin: auto;
     position: relative;
     z-index: 1;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     flex-shrink: 0;
 }
 
