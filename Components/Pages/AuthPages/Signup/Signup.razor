@@ -1,0 +1,127 @@
+@page "/sign-up"
+@using Microsoft.AspNetCore.Components.Forms
+@using System.ComponentModel.DataAnnotations
+@inject NavigationManager NavigationManager
+
+<PageTitle>Crear Cuenta - TecnoPartes</PageTitle>
+
+<HeadContent>
+    <link href="./css/signup.css" rel="stylesheet" />
+    <script src="./js/password-toggle.js"></script>
+</HeadContent>
+
+<div class="signup-container">
+    <div class="signup-card">
+        <div class="signup-header">
+            <h1 class="signup-title">¡Únete a TecnoPartes!</h1>
+            <p class="signup-subtitle">Crea tu cuenta y descubre los mejores componentes de PC</p>
+        </div>
+
+        <EditForm Model="@model" OnValidSubmit="HandleValidSubmit" class="signup-form">
+            <DataAnnotationsValidator />
+            
+            <div class="form-group">
+                <label for="fullName" class="form-label">Nombre Completo</label>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="bi bi-person"></i>
+                    </div>
+                    <InputText id="fullName" @bind-Value="model.FullName" class="form-input" placeholder="Tu nombre completo" autocomplete="name" />
+                </div>
+                <ValidationMessage For="@(() => model.FullName)" class="validation-message" />
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="bi bi-envelope"></i>
+                    </div>
+                    <InputText id="email" @bind-Value="model.Email" class="form-input" placeholder="correo@ejemplo.com" autocomplete="email" />
+                </div>
+                <ValidationMessage For="@(() => model.Email)" class="validation-message" />
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Contraseña</label>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="bi bi-lock"></i>
+                    </div>
+                    <InputText id="password" @bind-Value="model.Password" type="password" class="form-input" placeholder="••••••••" autocomplete="new-password" />
+                    <button id="password-toggle" class="password-toggle-btn" type="button" aria-label="Mostrar contraseña" tabindex="-1">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </div>
+                <div class="password-hint">Mínimo 8 caracteres, incluyendo mayúsculas, minúsculas y números</div>
+                <ValidationMessage For="@(() => model.Password)" class="validation-message" />
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="signup-btn" disabled="@isLoading">
+                    @if (isLoading)
+                    {
+                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        <span class="signup-btn-text">Creando cuenta...</span>
+                    }
+                    else
+                    {
+                        <i class="bi bi-person-plus me-2"></i>
+                        <span class="signup-btn-text">Crear Cuenta</span>
+                    }
+                </button>
+            </div>
+
+            <div class="terms-text">
+                Al crear una cuenta, aceptas nuestros <a href="/terminos" class="terms-link">Términos y Condiciones</a> y <a href="/privacidad" class="terms-link">Política de Privacidad</a>
+            </div>
+
+            <div class="signup-footer">
+                <p class="signin-prompt">
+                    <span class="signin-text">¿Ya tienes una cuenta?</span>
+                    <a href="/sign-in" class="signin-link">Inicia sesión aquí</a>
+                </p>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private SignUpModel model = new();
+    private bool isLoading = false;
+
+    private async Task HandleValidSubmit()
+    {
+        isLoading = true;
+        StateHasChanged();
+        
+        try
+        {
+            await Task.Delay(1500);
+            NavigationManager.NavigateTo("/verificar-correo");
+        }
+        catch (Exception)
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    public class SignUpModel
+    {
+        [Required(ErrorMessage = "El nombre completo es requerido")]
+        [StringLength(100, ErrorMessage = "El nombre no puede exceder los 100 caracteres")]
+        public string FullName { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "El correo electrónico es requerido")]
+        [EmailAddress(ErrorMessage = "Ingresa un correo electrónico válido")]
+        public string Email { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "La contraseña es requerida")]
+        [StringLength(100, ErrorMessage = "La contraseña debe tener al menos {2} y como máximo {1} caracteres.", MinimumLength = 8)]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$", 
+            ErrorMessage = "La contraseña debe contener al menos una letra mayúscula, una minúscula y un número")]
+        public string Password { get; set; } = string.Empty;
+    }
+}
+
