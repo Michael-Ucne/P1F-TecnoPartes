@@ -1,0 +1,343 @@
+@page "/garantias"
+@rendermode InteractiveServer
+@using P1F_TecnoPartes.Components.Pages.LandingPages.Components
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Garantías y Soporte - TecnoPartes</PageTitle>
+
+<HeadContent>
+    <meta name="description" content="Información sobre garantías, políticas de soporte y asistencia técnica para todos nuestros productos TecnoPartes.">
+    <link href="./css/variables.css" rel="stylesheet" />
+    <link href="./css/landing/landing.css" rel="stylesheet" />
+    <link href="./css/landing/header.css" rel="stylesheet" />
+    <link href="./css/landing/footer.css" rel="stylesheet" />
+    <link href="./css/support/garantias.css" rel="stylesheet" />
+</HeadContent>
+
+<LandingHeader />
+
+<main role="main" id="main-content">
+    <section class="warranty-hero">
+        <div class="container">
+            <div class="warranty-hero-content">
+                <h1 class="warranty-title">Garantías y Soporte</h1>
+                <p class="warranty-subtitle">Tu tranquilidad es nuestra prioridad. Conoce nuestras políticas de garantía y soporte técnico.</p>
+                <div class="warranty-badges">
+                    <div class="warranty-badge">
+                        <i class="bi bi-shield-check"></i>
+                        <span>Garantía del Fabricante</span>
+                    </div>
+                    <div class="warranty-badge">
+                        <i class="bi bi-tools"></i>
+                        <span>Soporte Técnico</span>
+                    </div>
+                    <div class="warranty-badge">
+                        <i class="bi bi-arrow-repeat"></i>
+                        <span>Cambios y Devoluciones</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="warranty-policies">
+        <div class="container">
+            <h2>Políticas de Garantía</h2>
+            <div class="policies-grid">
+                <div class="policy-card">
+                    <div class="policy-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h3>Garantía del Fabricante</h3>
+                    <p>Todos nuestros productos incluyen la garantía oficial del fabricante. La duración varía según el producto y marca.</p>
+                    <ul class="policy-details">
+                        <li>Procesadores: 3 años</li>
+                        <li>Tarjetas gráficas: 2-3 años</li>
+                        <li>Memorias RAM: 10 años</li>
+                        <li>Almacenamiento: 3-5 años</li>
+                        <li>Periféricos: 1-2 años</li>
+                    </ul>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-icon">
+                        <i class="bi bi-tools"></i>
+                    </div>
+                    <h3>Garantía TecnoPartes</h3>
+                    <p>Adicional a la garantía del fabricante, ofrecemos garantía extendida en productos seleccionados.</p>
+                    <ul class="policy-details">
+                        <li>Garantía adicional de 6 meses</li>
+                        <li>Soporte técnico especializado</li>
+                        <li>Reemplazo inmediato en tienda</li>
+                        <li>Diagnóstico gratuito</li>
+                        <li>Asesoría técnica personalizada</li>
+                    </ul>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-icon">
+                        <i class="bi bi-arrow-repeat"></i>
+                    </div>
+                    <h3>Cambios y Devoluciones</h3>
+                    <p>Política flexible de cambios y devoluciones para tu completa satisfacción.</p>
+                    <ul class="policy-details">
+                        <li>30 días para cambios y devoluciones</li>
+                        <li>Producto en empaque original</li>
+                        <li>Sin uso ni daños</li>
+                        <li>Reembolso completo</li>
+                        <li>Cambio por producto similar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="warranty-process">
+        <div class="container">
+            <h2>Proceso de Garantía</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Contacto Inicial</h4>
+                        <p>Contacta con nuestro soporte técnico para reportar el problema y recibir orientación inicial.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Diagnóstico</h4>
+                        <p>Nuestro equipo técnico realizará un diagnóstico completo para identificar la causa del problema.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Evaluación</h4>
+                        <p>Se evalúa si el problema está cubierto por la garantía y se determina la mejor solución.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Solución</h4>
+                        <p>Se procede con la reparación, reemplazo o devolución según corresponda.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Seguimiento</h4>
+                        <p>Te mantenemos informado del progreso y confirmamos la resolución del problema.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="warranty-coverage">
+        <div class="container">
+            <h2>¿Qué Cubre la Garantía?</h2>
+            <div class="coverage-grid">
+                <div class="coverage-item covered">
+                    <div class="coverage-icon">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+                    <h4>Defectos de Fabricación</h4>
+                    <p>Problemas que surgen durante el proceso de fabricación del producto.</p>
+                </div>
+
+                <div class="coverage-item covered">
+                    <div class="coverage-icon">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+                    <h4>Fallas de Hardware</h4>
+                    <p>Malfuncionamiento de componentes internos del producto.</p>
+                </div>
+
+                <div class="coverage-item covered">
+                    <div class="coverage-icon">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+                    <h4>Problemas de Rendimiento</h4>
+                    <p>Cuando el producto no cumple con las especificaciones anunciadas.</p>
+                </div>
+
+                <div class="coverage-item not-covered">
+                    <div class="coverage-icon">
+                        <i class="bi bi-x-circle"></i>
+                    </div>
+                    <h4>Daño por Uso Incorrecto</h4>
+                    <p>Problemas causados por mal uso o negligencia del usuario.</p>
+                </div>
+
+                <div class="coverage-item not-covered">
+                    <div class="coverage-icon">
+                        <i class="bi bi-x-circle"></i>
+                    </div>
+                    <h4>Daño Físico</h4>
+                    <p>Golpes, caídas, líquidos derramados o daños accidentales.</p>
+                </div>
+
+                <div class="coverage-item not-covered">
+                    <div class="coverage-icon">
+                        <i class="bi bi-x-circle"></i>
+                    </div>
+                    <h4>Modificaciones</h4>
+                    <p>Productos que han sido modificados o reparados por terceros.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="warranty-support">
+        <div class="container">
+            <h2>Soporte Técnico</h2>
+            <div class="support-options">
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="bi bi-headset"></i>
+                    </div>
+                    <h3>Soporte por Teléfono</h3>
+                    <p>Línea directa con nuestros técnicos especializados.</p>
+                    <div class="support-details">
+                        <p><strong>Horario:</strong> Lunes a Viernes 8:00 AM - 6:00 PM</p>
+                        <p><strong>Teléfono:</strong> +1 234 567 890</p>
+                    </div>
+                    <a href="tel:+1234567890" class="btn btn-primary">
+                        <i class="bi bi-telephone me-2"></i>
+                        Llamar Ahora
+                    </a>
+                </div>
+
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="bi bi-chat-dots"></i>
+                    </div>
+                    <h3>Chat en Vivo</h3>
+                    <p>Atención inmediata a través de nuestro chat en vivo.</p>
+                    <div class="support-details">
+                        <p><strong>Disponibilidad:</strong> 24/7</p>
+                        <p><strong>Tiempo de respuesta:</strong> 2 minutos</p>
+                    </div>
+                    <a href="/chat" class="btn btn-primary">
+                        <i class="bi bi-chat-dots me-2"></i>
+                        Iniciar Chat
+                    </a>
+                </div>
+
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="bi bi-envelope"></i>
+                    </div>
+                    <h3>Soporte por Email</h3>
+                    <p>Envía tu consulta y recibe respuesta detallada.</p>
+                    <div class="support-details">
+                        <p><strong>Respuesta:</strong> 24-48 horas</p>
+                        <p><strong>Email:</strong> soporte@tecnopartes.com</p>
+                    </div>
+                    <a href="mailto:soporte@tecnopartes.com" class="btn btn-primary">
+                        <i class="bi bi-envelope me-2"></i>
+                        Enviar Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="warranty-faq">
+        <div class="container">
+            <h2>Preguntas Frecuentes sobre Garantías</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>¿Cómo activo mi garantía?</h4>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La garantía se activa automáticamente con la compra. Solo necesitas conservar tu factura y el producto en su empaque original.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>¿Qué documentos necesito para hacer válida la garantía?</h4>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Necesitas la factura de compra, el producto en su empaque original y todos los accesorios incluidos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>¿Cuánto tiempo tarda el proceso de garantía?</h4>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El tiempo varía según el tipo de problema. Reparaciones simples pueden tomar 3-5 días, mientras que problemas complejos pueden requerir 1-2 semanas.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>¿Puedo cambiar mi producto por otro modelo?</h4>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, dentro de los 30 días posteriores a la compra puedes cambiar tu producto por otro modelo, pagando la diferencia si aplica.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>¿La garantía cubre software?</h4>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La garantía del fabricante cubre principalmente hardware. Para problemas de software, ofrecemos soporte técnico especializado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-warranty">
+        <div class="container">
+            <div class="contact-card">
+                <div class="contact-content">
+                    <h3>¿Necesitas Ayuda con tu Garantía?</h3>
+                    <p>Nuestro equipo de soporte está listo para ayudarte con cualquier consulta sobre garantías y soporte técnico.</p>
+                    <div class="contact-options">
+                        <a href="/contacto" class="btn btn-primary">
+                            <i class="bi bi-headset me-2"></i>
+                            Contactar Soporte
+                        </a>
+                        <a href="/estado-garantia" class="btn btn-outline-primary">
+                            <i class="bi bi-search me-2"></i>
+                            Consultar Estado
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <LandingFooter />
+</main>
+
+<script src="/js/faq.js"></script>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("initializeFAQ");
+        }
+    }
+} 
