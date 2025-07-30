@@ -1,7 +1,7 @@
 /* ===== SESION DE PRODUCTOS VERSION DESKTOP ===== */
 
 #productos {
-    background-color: var(--bg-secondary);
+    background: var(--bg-primary);
     padding: 4rem 0;
 }
 
