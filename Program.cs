@@ -1,9 +1,12 @@
 using P1F_TecnoPartes.Components;
+using P1F_TecnoPartes.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddSingleton<CartService>();
 
 var app = builder.Build();
 
