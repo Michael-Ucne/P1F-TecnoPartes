@@ -8,7 +8,7 @@ header {
     right: 0 !important;
     width: 100% !important;
     height: 80px !important;
-    background-color: rgba(18, 18, 18, 0.95) !important;
+    background-color: var(--sidebar-bg) !important; /* Color igual al sidebar del dashboard */
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
     border-bottom: 1px solid var(--border-color) !important;
