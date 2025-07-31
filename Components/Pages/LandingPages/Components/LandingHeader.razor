@@ -21,13 +21,12 @@
                         <i class="bi bi-cart3 fs-4"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             @CartService.TotalItems
-                            <span class="visually-hidden">items en el carrito</span>
                         </span>
                     </a>
                     <div class="cart-dropdown-menu" id="cartDropdownMobile">
                         <div class="cart-dropdown-header">
                             <i class="bi bi-cart3 me-2"></i>
-                            <span>Carrito de compras (@CartService.TotalItems items)</span>
+                            <span>Carrito de compras (Total: $@CartService.TotalPrice.ToString("F2"))</span>
                         </div>
                         <div class="cart-dropdown-body">
                             @if (CartService.Items.Count == 0)
@@ -46,8 +45,8 @@
                                         <div class="cart-item d-flex align-items-center mb-3">
                                             <img src="@item.Image" alt="@item.Name" class="cart-item-image me-3" />
                                             <div class="cart-item-details flex-grow-1">
-                                                <h6 class="mb-1">@item.Name</h6>
-                                                <small class="text-muted">@item.Quantity x $@item.Price.ToString("F2")</small>
+                                                <h6 class="mb-1 cart-item-name">@item.Name</h6>
+                                                <div class="cart-item-price">@item.Quantity x $@item.Price.ToString("F2")</div>
                                             </div>
                                             <div class="cart-item-actions">
                                                 <button class="btn btn-sm btn-outline-danger" @onclick="() => RemoveFromCart(item.Id)">
@@ -56,10 +55,6 @@
                                             </div>
                                         </div>
                                     }
-                                    <hr />
-                                    <div class="text-center">
-                                        <strong>Total: $@CartService.TotalPrice.ToString("F2")</strong>
-                                    </div>
                                 </div>
                             }
                         </div>
@@ -118,13 +113,12 @@
                             <i class="bi bi-cart3 fs-4"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                 @CartService.TotalItems
-                                <span class="visually-hidden">items en el carrito</span>
                             </span>
                         </a>
                         <div class="cart-dropdown-menu" id="cartDropdown">
                             <div class="cart-dropdown-header">
                                 <i class="bi bi-cart3 me-2"></i>
-                                <span>Carrito de compras (@CartService.TotalItems items)</span>
+                                <span>Carrito de compras (Total: $@CartService.TotalPrice.ToString("F2"))</span>
                             </div>
                             <div class="cart-dropdown-body">
                                 @if (CartService.Items.Count == 0)
@@ -143,8 +137,8 @@
                                             <div class="cart-item d-flex align-items-center mb-3">
                                                 <img src="@item.Image" alt="@item.Name" class="cart-item-image me-3" />
                                                 <div class="cart-item-details flex-grow-1">
-                                                    <h6 class="mb-1">@item.Name</h6>
-                                                    <small class="text-muted">@item.Quantity x $@item.Price.ToString("F2")</small>
+                                                    <h6 class="mb-1 cart-item-name">@item.Name</h6>
+                                                    <div class="cart-item-price">@item.Quantity x $@item.Price.ToString("F2")</div>
                                                 </div>
                                                 <div class="cart-item-actions">
                                                     <button class="btn btn-sm btn-outline-danger" @onclick="() => RemoveFromCart(item.Id)">
@@ -153,20 +147,16 @@
                                                 </div>
                                             </div>
                                         }
-                                        <hr />
-                                        <div class="text-center">
-                                            <strong>Total: $@CartService.TotalPrice.ToString("F2")</strong>
-                                        </div>
                                     </div>
                                 }
                             </div>
                             <div class="cart-dropdown-footer">
                                 @if (CartService.Items.Count > 0)
                                 {
-                                    <button class="btn btn-success btn-sm w-100 mb-2">
+                                    <a href="/checkout" class="btn btn-success btn-sm w-100 mb-2">
                                         <i class="bi bi-credit-card me-2"></i>
                                         Proceder al pago
-                                    </button>
+                                    </a>
                                     <button class="btn btn-outline-danger btn-sm w-100" @onclick="ClearCart">
                                         <i class="bi bi-trash me-2"></i>
                                         Vaciar carrito
