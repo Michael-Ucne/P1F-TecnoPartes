@@ -1,5 +1,3 @@
-/* ===== LANDING - DISEÑO COMPLETAMENTE NUEVO ===== */
-
 /* ===== VARIABLES CSS VERSION DESKTOP ===== */
 
 html, body {
@@ -150,4 +148,17 @@ main::-webkit-scrollbar-thumb:hover {
     main::-webkit-scrollbar {
         width: 6px;
     }
+}
+
+/* ===== ELIMINAR OUTLINE DE FOCUS EN BOTONES ===== */
+.btn:focus,
+.btn:focus-visible,
+.btn:focus-within {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn:active {
+    outline: none !important;
+    box-shadow: none !important;
 }
