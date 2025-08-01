@@ -1,0 +1,93 @@
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components
+@using P1F_TecnoPartes.Services
+@using Microsoft.JSInterop
+@inject CartService CartService
+@inject IJSRuntime JS
+
+<section id="ofertas" class="py-5">
+    <div class="container">
+        <div class="text-center mb-4 mb-md-5">
+            <h2 class="offers-title">Ofertas Especiales</h2>
+            <p class="offers-subtitle text-muted">Aprovecha estos descuentos increíbles por tiempo limitado</p>
+        </div>
+        <div class="row g-3 g-md-4">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm offer-card">
+                    <div class="position-relative offer-image-container">
+                        <span class="badge bg-danger position-absolute offer-badge">-30%</span>
+                        <img src="/images/oferta-kit-gamer.jpg" 
+                             class="offer-image" 
+                             alt="Kit Gamer" />
+                    </div>
+                    <div class="card-body text-center offer-card-body">
+                        <h4 class="offer-card-title">Kit Gamer Completo</h4>
+                        <p class="offer-description">Incluye teclado, mouse y auriculares gaming</p>
+                        <div class="offer-price-section mb-3">
+                            <span class="offer-current-price text-danger">$199.99</span>
+                            <span class="offer-original-price text-muted text-decoration-line-through ms-2">$285.99</span>
+                        </div>
+                        <button class="btn btn-danger offer-btn" @onclick="() => AddOffer1()">¡Aprovechar Oferta!</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm offer-card">
+                    <div class="position-relative offer-image-container">
+                        <span class="badge bg-warning text-dark position-absolute offer-badge">¡Nuevo!</span>
+                        <img src="/images/oferta-pc-gamer.jpg" 
+                             class="offer-image" 
+                             alt="PC Gamer" />
+                    </div>
+                    <div class="card-body text-center offer-card-body">
+                        <h4 class="offer-card-title">PC Gamer Pro</h4>
+                        <p class="offer-description">Ryzen 7, RTX 3060, 32GB RAM, 1TB M.2</p>
+                        <div class="offer-price-section mb-3">
+                            <span class="offer-current-price text-primary">$1,499.99</span>
+                            <span class="offer-original-price text-muted text-decoration-line-through ms-2">$1,799.99</span>
+                        </div>
+                        <button class="btn btn-primary offer-btn" @onclick="() => AddOffer2()">Comprar Ahora</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm offer-card">
+                    <div class="position-relative offer-image-container">
+                        <span class="badge bg-success position-absolute offer-badge">-25%</span>
+                        <img src="/images/monitor_curvo.jpg" 
+                             class="offer-image" 
+                             alt="Monitor Gamer" />
+                    </div>
+                    <div class="card-body text-center offer-card-body">
+                        <h4 class="offer-card-title">Monitor Curvo 32" 165Hz</h4>
+                        <p class="offer-description">QHD, 1ms, FreeSync Premium</p>
+                        <div class="offer-price-section mb-3">
+                            <span class="offer-current-price text-success">$349.99</span>
+                            <span class="offer-original-price text-muted text-decoration-line-through ms-2">$466.65</span>
+                        </div>
+                        <button class="btn btn-success offer-btn" @onclick="() => AddOffer3()">Comprar Ahora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private void AddOffer1()
+    {
+        CartService.AddItem(101, "Kit Gamer Completo", 199.99m, "/images/oferta-kit-gamer.jpg");
+    }
+
+    private void AddOffer2()
+    {
+        CartService.AddItem(102, "PC Gamer Pro", 1499.99m, "/images/oferta-pc-gamer.jpg");
+    }
+
+    private void AddOffer3()
+    {
+        CartService.AddItem(103, "Monitor Curvo 32\" 165Hz", 349.99m, "/images/monitor_curvo.jpg");
+    }
+} 

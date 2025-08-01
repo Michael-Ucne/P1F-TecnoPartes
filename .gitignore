@@ -1,0 +1,22 @@
+# .NET Core
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Archivos de compilación
+/publish/
+
+# Archivos de configuración local
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+
+# Archivos de entorno
+*.db
+*.db-shm
+*.db-wal
+*.sqlite

@@ -1,0 +1,111 @@
+:root {
+    --primary: #6c63ff;
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --border-color: #333333;
+    --card-bg: #1e1e1e;
+    --hover-color: #6c63ff;
+    --sidebar-bg: #1a1a1a;
+    --header-bg: rgba(26, 26, 26, 0.95);
+}
+
+/* ===== SECCION DE HEADER VERSION DESKTOP ===== */
+
+.dashboard-header {
+    background-color: var(--sidebar-bg);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+    position: fixed;
+    top: 0;
+    left: 250px;
+    right: 0;
+    height: 70px;
+    z-index: 1020;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 1.5rem;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-toggle {
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    transition: all 0.3s ease;
+    font-size: 1.25rem;
+}
+
+.sidebar-toggle:hover {
+    background-color: rgba(108, 99, 255, 0.1);
+    color: var(--primary) !important;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-actions .btn {
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    transition: all 0.3s;
+}
+
+.header-actions .btn:hover {
+    background-color: rgba(108, 99, 255, 0.1);
+    color: var(--primary) !important;
+}
+
+/* ===== SECCION DE HEADER VERSION MOBILE ===== */
+
+@media (max-width: 991.98px) {
+    .dashboard-header {
+        left: 0;
+        height: 60px;
+    }
+    
+    .header-container {
+        padding: 0 1rem;
+    }
+    
+    .header-left {
+        display: flex;
+    }
+    
+    .header-right {
+        display: flex;
+    }
+}
+
+@media (min-width: 992px) {
+    .header-left {
+        display: none;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .dashboard-header {
+        height: 60px;
+    }
+    
+    .sidebar-toggle {
+        font-size: 1.1rem;
+    }
+} 
