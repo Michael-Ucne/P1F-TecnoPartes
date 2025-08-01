@@ -154,6 +154,19 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
+.offer-btn:focus,
+.offer-btn:focus-visible,
+.offer-btn:focus-within {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.offer-btn:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 /* ===== SECCION DE OFERTAS VERSION MOBILE ===== */
 
 @media (max-width: 991.98px) {
