@@ -13,6 +13,7 @@ html {
 
 * {
     box-sizing: border-box;
+    cursor: auto !important;
 }
 
 body {
@@ -76,4 +77,708 @@ h1:focus {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
+} 
+
+/* ===== REGLAS GLOBALES ===== */
+* {
+    cursor: auto !important;
+}
+
+/* ===== CURSOR POINTER PARA ELEMENTOS INTERACTIVOS ===== */
+button,
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-link,
+.btn-outline-primary,
+.btn-outline-secondary,
+.btn-sm,
+.btn-lg,
+a,
+.nav-link,
+.help-modal-btn,
+.modal-close,
+.cart-icon,
+.faq-question,
+.category-card,
+.navbar-toggler,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+input[type="image"],
+select,
+option,
+[role="button"],
+[role="link"],
+[role="tab"],
+[role="menuitem"],
+[tabindex],
+.clickable,
+.interactive,
+.hover-effect,
+.card,
+.card-body,
+.dropdown-toggle,
+.dropdown-item,
+.list-group-item,
+.pagination .page-link,
+.close,
+.dismiss,
+.collapse,
+.expand,
+.toggle,
+.switch,
+.checkbox,
+.radio,
+.form-check-input,
+.form-check-label,
+.accordion-button,
+.accordion-header,
+.tab,
+.tab-link,
+.menu-item,
+.nav-item,
+.sidebar-item,
+.sidebar-link,
+.dashboard-card,
+.stat-card,
+.action-btn,
+.action-button,
+.cta-btn,
+.cta-button,
+.hero-btn,
+.hero-button,
+.landing-btn,
+.landing-button,
+.search-btn,
+.search-button,
+.filter-btn,
+.filter-button,
+.sort-btn,
+.sort-button,
+.add-btn,
+.add-button,
+.edit-btn,
+.edit-button,
+.delete-btn,
+.delete-button,
+.save-btn,
+.save-button,
+.cancel-btn,
+.cancel-button,
+.confirm-btn,
+.confirm-button,
+.submit-btn,
+.submit-button,
+.reset-btn,
+.reset-button,
+.back-btn,
+.back-button,
+.next-btn,
+.next-button,
+.prev-btn,
+.prev-button,
+.first-btn,
+.first-button,
+.last-btn,
+.last-button,
+.home-btn,
+.home-button,
+.menu-btn,
+.menu-button,
+.hamburger,
+.hamburger-btn,
+.mobile-menu-btn,
+.mobile-menu-button,
+.sidebar-toggle,
+.sidebar-toggle-btn,
+.cart-toggle,
+.cart-toggle-btn,
+.user-menu-btn,
+.user-menu-button,
+.profile-btn,
+.profile-button,
+.settings-btn,
+.settings-button,
+.logout-btn,
+.logout-button,
+.login-btn,
+.login-button,
+.signup-btn,
+.signup-button,
+.register-btn,
+.register-button,
+.forgot-password-btn,
+.forgot-password-button,
+.contact-btn,
+.contact-button,
+.support-btn,
+.support-button,
+.help-btn,
+.help-button,
+.about-btn,
+.about-button,
+.terms-btn,
+.terms-button,
+.privacy-btn,
+.privacy-button,
+.warranty-btn,
+.warranty-button,
+.return-btn,
+.return-button,
+.refund-btn,
+.refund-button,
+.shipping-btn,
+.shipping-button,
+.delivery-btn,
+.delivery-button,
+.tracking-btn,
+.tracking-button,
+.order-btn,
+.order-button,
+.purchase-btn,
+.purchase-button,
+.buy-btn,
+.buy-button,
+.sell-btn,
+.sell-button,
+.trade-btn,
+.trade-button,
+.exchange-btn,
+.exchange-button,
+.upgrade-btn,
+.upgrade-button,
+.downgrade-btn,
+.downgrade-button,
+.promote-btn,
+.promote-button,
+.demote-btn,
+.demote-button,
+.approve-btn,
+.approve-button,
+.reject-btn,
+.reject-button,
+.accept-btn,
+.accept-button,
+.decline-btn,
+.decline-button,
+.block-btn,
+.block-button,
+.unblock-btn,
+.unblock-button,
+.ban-btn,
+.ban-button,
+.unban-btn,
+.unban-button,
+.suspend-btn,
+.suspend-button,
+.activate-btn,
+.activate-button,
+.deactivate-btn,
+.deactivate-button,
+.enable-btn,
+.enable-button,
+.disable-btn,
+.disable-button,
+.show-btn,
+.show-button,
+.hide-btn,
+.hide-button,
+.display-btn,
+.display-button,
+.view-btn,
+.view-button,
+.watch-btn,
+.watch-button,
+.follow-btn,
+.follow-button,
+.unfollow-btn,
+.unfollow-button,
+.subscribe-btn,
+.subscribe-button,
+.unsubscribe-btn,
+.unsubscribe-button,
+.like-btn,
+.like-button,
+.unlike-btn,
+.unlike-button,
+.favorite-btn,
+.favorite-button,
+.unfavorite-btn,
+.unfavorite-button,
+.bookmark-btn,
+.bookmark-button,
+.unbookmark-btn,
+.unbookmark-button,
+.share-btn,
+.share-button,
+.forward-btn,
+.forward-button,
+.reply-btn,
+.reply-button,
+.comment-btn,
+.comment-button,
+.rate-btn,
+.rate-button,
+.review-btn,
+.review-button,
+.report-btn,
+.report-button,
+.flag-btn,
+.flag-button,
+.spam-btn,
+.spam-button,
+.archive-btn,
+.archive-button,
+.unarchive-btn,
+.unarchive-button,
+.pin-btn,
+.pin-button,
+.unpin-btn,
+.unpin-button,
+.star-btn,
+.star-button,
+.unstar-btn,
+.unstar-button,
+.heart-btn,
+.heart-button,
+.unheart-btn,
+.unheart-button,
+.thumbs-up-btn,
+.thumbs-up-button,
+.thumbs-down-btn,
+.thumbs-down-button,
+.check-btn,
+.check-button,
+.uncheck-btn,
+.uncheck-button,
+.tick-btn,
+.tick-button,
+.cross-btn,
+.cross-button,
+.plus-btn,
+.plus-button,
+.minus-btn,
+.minus-button,
+.multiply-btn,
+.multiply-button,
+.divide-btn,
+.divide-button,
+.equals-btn,
+.equals-button,
+.calculate-btn,
+.calculate-button,
+.compute-btn,
+.compute-button,
+.solve-btn,
+.solve-button,
+.resolve-btn,
+.resolve-button,
+.fix-btn,
+.fix-button,
+.repair-btn,
+.repair-button,
+.maintain-btn,
+.maintain-button,
+.service-btn,
+.service-button,
+.install-btn,
+.install-button,
+.uninstall-btn,
+.uninstall-button,
+.update-btn,
+.update-button,
+.upgrade-btn,
+.upgrade-button,
+.download-btn,
+.download-button,
+.upload-btn,
+.upload-button,
+.import-btn,
+.import-button,
+.export-btn,
+.export-button,
+.backup-btn,
+.backup-button,
+.restore-btn,
+.restore-button,
+.sync-btn,
+.sync-button,
+.refresh-btn,
+.refresh-button,
+.reload-btn,
+.reload-button,
+.restart-btn,
+.restart-button,
+.reset-btn,
+.reset-button,
+.clear-btn,
+.clear-button,
+.clean-btn,
+.clean-button,
+.wipe-btn,
+.wipe-button,
+.erase-btn,
+.erase-button,
+.remove-btn,
+.remove-button,
+.delete-btn,
+.delete-button,
+.destroy-btn,
+.destroy-button,
+.kill-btn,
+.kill-button,
+.terminate-btn,
+.terminate-button,
+.stop-btn,
+.stop-button,
+.pause-btn,
+.pause-button,
+.resume-btn,
+.resume-button,
+.play-btn,
+.play-button,
+.record-btn,
+.record-button,
+.capture-btn,
+.capture-button,
+.screenshot-btn,
+.screenshot-button,
+.print-btn,
+.print-button,
+.scan-btn,
+.scan-button,
+.copy-btn,
+.copy-button,
+.paste-btn,
+.paste-button,
+.cut-btn,
+.cut-button,
+.clip-btn,
+.clip-button,
+.crop-btn,
+.crop-button,
+.resize-btn,
+.resize-button,
+.scale-btn,
+.scale-button,
+.rotate-btn,
+.rotate-button,
+.flip-btn,
+.flip-button,
+.mirror-btn,
+.mirror-button,
+.invert-btn,
+.invert-button,
+.adjust-btn,
+.adjust-button,
+.tune-btn,
+.tune-button,
+.calibrate-btn,
+.calibrate-button,
+.optimize-btn,
+.optimize-button,
+.boost-btn,
+.boost-button,
+.accelerate-btn,
+.accelerate-button,
+.speed-up-btn,
+.speed-up-button,
+.slow-down-btn,
+.slow-down-button,
+.throttle-btn,
+.throttle-button,
+.limit-btn,
+.limit-button,
+.restrict-btn,
+.restrict-button,
+.allow-btn,
+.allow-button,
+.permit-btn,
+.permit-button,
+.grant-btn,
+.grant-button,
+.deny-btn,
+.deny-button,
+.forbid-btn,
+.forbid-button,
+.prevent-btn,
+.prevent-button,
+.block-btn,
+.block-button,
+.unblock-btn,
+.unblock-button,
+.bypass-btn,
+.bypass-button,
+.circumvent-btn,
+.circumvent-button,
+.override-btn,
+.override-button,
+.force-btn,
+.force-button,
+.require-btn,
+.require-button,
+.mandate-btn,
+.mandate-button,
+.oblige-btn,
+.oblige-button,
+.compel-btn,
+.compel-button,
+.pressure-btn,
+.pressure-button,
+.press-btn,
+.press-button,
+.push-btn,
+.push-button,
+.pull-btn,
+.pull-button,
+.drag-btn,
+.drag-button,
+.drop-btn,
+.drop-button,
+.lift-btn,
+.lift-button,
+.lower-btn,
+.lower-button,
+.raise-btn,
+.raise-button,
+.elevate-btn,
+.elevate-button,
+.depress-btn,
+.depress-button,
+.sink-btn,
+.sink-button,
+.dive-btn,
+.dive-button,
+.surface-btn,
+.surface-button,
+.emerg-btn,
+.emerg-button,
+.urgent-btn,
+.urgent-button,
+.critical-btn,
+.critical-button,
+.important-btn,
+.important-button,
+.priority-btn,
+.priority-button,
+.primary-btn,
+.primary-button,
+.secondary-btn,
+.secondary-button,
+.tertiary-btn,
+.tertiary-button,
+.quaternary-btn,
+.quaternary-button,
+.quinary-btn,
+.quinary-button,
+.senary-btn,
+.senary-button,
+.septenary-btn,
+.septenary-button,
+.octonary-btn,
+.octonary-button,
+.nonary-btn,
+.nonary-button,
+.denary-btn,
+.denary-button,
+.undecimal-btn,
+.undecimal-button,
+.duodecimal-btn,
+.duodecimal-button,
+.tredecimal-btn,
+.tredecimal-button,
+.quattuordecimal-btn,
+.quattuordecimal-button,
+.quindecimal-btn,
+.quindecimal-button,
+.sedecimal-btn,
+.sedecimal-button,
+.septendecimal-btn,
+.septendecimal-button,
+.octodecimal-btn,
+.octodecimal-button,
+.novemdecimal-btn,
+.novemdecimal-button,
+.vigesimal-btn,
+.vigesimal-button,
+.trigesimal-btn,
+.trigesimal-button,
+.tetragesimal-btn,
+.tetragesimal-button,
+.pentagesimal-btn,
+.pentagesimal-button,
+.hexagesimal-btn,
+.hexagesimal-button,
+.septagesimal-btn,
+.septagesimal-button,
+.octagesimal-btn,
+.octagesimal-button,
+.nonagesimal-btn,
+.nonagesimal-button,
+.centesimal-btn,
+.centesimal-button,
+.millesimal-btn,
+.millesimal-button {
+    cursor: pointer !important;
+}
+
+/* ===== CURSOR TEXT PARA CAMPOS DE TEXTO ===== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+textarea,
+[contenteditable="true"] {
+    cursor: text !important;
+}
+
+/* ===== CURSOR NOT-ALLOWED PARA ELEMENTOS DESHABILITADOS ===== */
+button:disabled,
+.btn:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled,
+.disabled,
+[disabled] {
+    cursor: not-allowed !important;
+}
+
+/* ===== MODALES DE AYUDA ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999999 !important;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 9999999 !important;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-title {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.modal-body h3 {
+    color: var(--text-primary);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.modal-body ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.modal-body li {
+    margin-bottom: 0.5rem;
+}
+
+.modal-body p {
+    margin-bottom: 1rem;
+}
+
+/* ===== SCROLLBAR DEL MODAL ===== */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--purple-light);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .modal-title {
+        font-size: 1.3rem;
+    }
 } 
