@@ -6,6 +6,8 @@ obj/
 *.suo
 *.userosscache
 *.sln.docstates
+.vscode/
+
 
 # Archivos de compilación
 /publish/
