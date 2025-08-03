@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirma tu cuenta - TecnoPartes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6c63ff 0%, #5a52d4 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: sparkle 4s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .tagline {
+            font-size: 16px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px 30px;
+            background: #1e1e1e;
+        }
+        
+        .welcome-text {
+            font-size: 28px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #6c63ff, #9f7aea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .message {
+            font-size: 16px;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.8;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #6c63ff 0%, #5a52d4 100%);
+            color: white;
+            text-decoration: none;
+            padding: 18px 36px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1e1e1e 100%);
+            border-left: 4px solid #6c63ff;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .info-title {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .info-text {
+            color: #b0b0b0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            color: #b0b0b0;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #333333;
+        }
+        
+        .footer-text {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: inline-block;
+            margin: 0 10px;
+            color: #6c63ff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: #9f7aea;
+        }
+        
+        .expiry-notice {
+            background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+            border: 1px solid #ffc107;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
+        }
+        
+        .expiry-text {
+            color: #1a1a1a;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .security-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 10px 0;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 12px;
+            }
+            
+            .header, .content, .footer {
+                padding: 20px;
+            }
+            
+            .welcome-text {
+                font-size: 24px;
+            }
+            
+            .cta-button {
+                padding: 16px 28px;
+                font-size: 14px;
+            }
+            
+            .logo {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">TecnoPartes</div>
+            <div class="tagline">Tu tienda de confianza en tecnología</div>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <h1 class="welcome-text">¡Bienvenido a TecnoPartes!</h1>
+            
+            <div class="security-badge">🔒 Verificación Segura</div>
+            
+            <p class="message">
+                Gracias por registrarte en nuestra plataforma. Para completar tu registro y acceder a todos nuestros servicios, necesitamos confirmar tu dirección de correo electrónico.
+            </p>
+            
+            <!-- Call to Action Button -->
+            <div class="button-container">
+                <a href="{{ .ConfirmationURL }}" class="cta-button">
+                    Confirmar mi cuenta
+                </a>
+            </div>
+            
+            <!-- Expiry Notice -->
+            <div class="expiry-notice">
+                <p class="expiry-text">
+                    ⏰ Este enlace expirará en 24 horas por seguridad.
+                </p>
+            </div>
+            
+            <!-- Info Box -->
+            <div class="info-box">
+                <div class="info-title">¿Por qué confirmar tu cuenta?</div>
+                <div class="info-text">
+                    • Acceso completo a todos nuestros productos<br>
+                    • Historial de compras y pedidos<br>
+                    • Notificaciones de ofertas especiales<br>
+                    • Soporte técnico prioritario<br>
+                    • Garantías extendidas en productos
+                </div>
+            </div>
+            
+            <p class="message">
+                Si no creaste esta cuenta, puedes ignorar este correo de forma segura.
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">
+                © 2025 TecnoPartes. Todos los derechos reservados.
+            </p>
+            <p class="footer-text">
+                Este correo fue enviado a {{ .Email }}. Si tienes alguna pregunta, contáctanos.
+            </p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">Soporte</a>
+                <a href="#" class="social-link">Política de Privacidad</a>
+                <a href="#" class="social-link">Términos de Servicio</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
