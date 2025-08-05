@@ -1,0 +1,490 @@
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.JSInterop
+@using P1F_TecnoPartes.Services
+@inject IJSRuntime JS
+@inject CartService CartService
+@inject NavigationManager Navigation
+@implements IDisposable
+@implements IAsyncDisposable
+
+<header class="header-main" role="banner">
+    <nav class="navbar navbar-expand-lg" role="navigation" aria-label="Navegación principal">
+        <div class="container">
+    
+            <a class="navbar-brand" href="/" @onclick="NavigateToHome" @onclick:preventDefault="true" aria-label="Ir al inicio">
+                <i class="bi bi-laptop" aria-hidden="true"></i>
+                <span class="brand-text">TecnoPartes</span>
+            </a>
+            
+
+            <div class="navbar-controls d-lg-none">
+
+                <div class="cart-wrapper-mobile">
+                    <button class="btn btn-link cart-btn-mobile" 
+                            @onclick="ToggleMobileCart" 
+                            aria-label="Ver carrito de compras"
+                            aria-expanded="@_isMobileCartOpen">
+                        <i class="bi bi-cart3" aria-hidden="true"></i>
+                        @if (CartService.TotalItems > 0)
+                        {
+                            <span class="cart-badge" aria-label="@CartService.TotalItems items en el carrito">
+                                @CartService.TotalItems
+                            </span>
+                        }
+                    </button>
+                </div>
+
+
+                <button class="navbar-toggler" 
+                        type="button" 
+                        @onclick="ToggleMobileMenu"
+                        aria-controls="navbarNav"
+                        aria-expanded="@_isMobileMenuOpen"
+                        aria-label="Alternar menú de navegación">
+                    <span class="navbar-toggler-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+
+
+            <div class="navbar-collapse @(_isMobileMenuOpen ? "show" : "")" id="navbarNav">
+                <ul class="navbar-nav me-auto" role="menubar">
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" 
+                           href="/" 
+                           @onclick="NavigateToHome" 
+                           @onclick:preventDefault="true"
+                           role="menuitem"
+                           aria-label="Ir al inicio">
+                            Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" 
+                           href="#productos" 
+                           @onclick='() => ScrollToSection("productos")' 
+                           @onclick:preventDefault="true"
+                           data-section="productos"
+                           role="menuitem">
+                            Productos
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" 
+                           href="#categorias" 
+                           @onclick='() => ScrollToSection("categorias")' 
+                           @onclick:preventDefault="true"
+                           data-section="categorias"
+                           role="menuitem">
+                            Categorías
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" 
+                           href="#ofertas" 
+                           @onclick='() => ScrollToSection("ofertas")' 
+                           @onclick:preventDefault="true"
+                           data-section="ofertas"
+                           role="menuitem">
+                            Ofertas
+                        </a>
+                    </li>
+                </ul>
+
+
+                <div class="navbar-actions d-none d-lg-flex">
+
+                    <div class="cart-wrapper-desktop">
+                        <button class="btn btn-link cart-btn-desktop" 
+                                @onclick="ToggleDesktopCart"
+                                aria-label="Ver carrito de compras"
+                                aria-expanded="@_isDesktopCartOpen">
+                            <i class="bi bi-cart3" aria-hidden="true"></i>
+                            @if (CartService.TotalItems > 0)
+                            {
+                                <span class="cart-badge" aria-label="@CartService.TotalItems items en el carrito">
+                                    @CartService.TotalItems
+                                </span>
+                            }
+                        </button>
+
+
+                        @if (_isDesktopCartOpen)
+                        {
+                            <div class="cart-dropdown-desktop" role="dialog" aria-label="Carrito de compras">
+                                <div class="cart-header">
+                                    <h6 class="cart-title">
+                                        <i class="bi bi-cart3" aria-hidden="true"></i>
+                                        Carrito de compras
+                                    </h6>
+                                    <button class="btn btn-sm btn-link cart-close" 
+                                            @onclick="CloseDesktopCart"
+                                            aria-label="Cerrar carrito">
+                                        <i class="bi bi-x-lg" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                                <div class="cart-content">
+                                    @if (CartService.Items.Count == 0)
+                                    {
+                                        <div class="cart-empty">
+                                            <i class="bi bi-cart-x" aria-hidden="true"></i>
+                                            <p>No hay productos en el carrito</p>
+                                            <small>Agrega algunos productos para continuar</small>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="cart-items">
+                                            @foreach (var item in CartService.Items)
+                                            {
+                                                <div class="cart-item" key="@item.Id">
+                                                    <img src="@item.Image" 
+                                                         alt="@item.Name" 
+                                                         class="cart-item-image" 
+                                                         loading="lazy" />
+                                                    <div class="cart-item-details">
+                                                        <h6 class="cart-item-name">@item.Name</h6>
+                                                        <div class="cart-item-price">$@item.Price.ToString("F2") c/u</div>
+                                                        <div class="cart-item-total">Total: $@item.Total.ToString("F2")</div>
+                                                    </div>
+                                                    <div class="cart-item-actions">
+                                                        <div class="quantity-controls">
+                                                            <button class="btn btn-sm btn-outline-secondary quantity-btn" 
+                                                                    @onclick="() => DecreaseQuantity(item.Id)"
+                                                                    disabled="@(item.Quantity <= 1)"
+                                                                    aria-label="Reducir cantidad">
+                                                                <i class="bi bi-dash" aria-hidden="true"></i>
+                                                            </button>
+                                                            <input type="number" 
+                                                                   class="form-control quantity-input" 
+                                                                   value="@item.Quantity" 
+                                                                   min="1" 
+                                                                   max="99"
+                                                                   @onchange="@(async (e) => await UpdateQuantityDirectly(item.Id, int.Parse(e.Value?.ToString() ?? "1")))"
+                                                                   aria-label="Cantidad de @item.Name" />
+                                                            <button class="btn btn-sm btn-outline-secondary quantity-btn" 
+                                                                    @onclick="() => IncreaseQuantity(item.Id)"
+                                                                    aria-label="Aumentar cantidad">
+                                                                <i class="bi bi-plus" aria-hidden="true"></i>
+                                                            </button>
+                                                        </div>
+                                                        <button class="btn btn-sm btn-outline-danger remove-btn" 
+                                                                @onclick="() => RemoveItemCompletely(item.Id)"
+                                                                aria-label="Eliminar @item.Name del carrito">
+                                                            <i class="bi bi-trash" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+
+                                @if (CartService.Items.Count > 0)
+                                {
+                                    <div class="cart-footer">
+                                        <div class="cart-total">
+                                            <span>Total: $@CartService.TotalPrice.ToString("F2")</span>
+                                        </div>
+                                        <div class="cart-actions">
+                                            <a href="/checkout" class="btn btn-success btn-sm">
+                                                <i class="bi bi-credit-card" aria-hidden="true"></i>
+                                                Proceder al pago
+                                            </a>
+                                            <button class="btn btn-outline-danger btn-sm" @onclick="ClearCart">
+                                                <i class="bi bi-trash" aria-hidden="true"></i>
+                                                Vaciar carrito
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="cart-footer">
+                                        <button class="btn btn-primary btn-sm w-100" @onclick="GoToProducts">
+                                            <i class="bi bi-shop" aria-hidden="true"></i>
+                                            Ver productos
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+
+
+                    <a href="/sign-in" class="btn btn-outline-light login-btn">
+                        <i class="bi bi-person" aria-hidden="true"></i>
+                        <span class="login-text">Iniciar Sesión</span>
+                    </a>
+                </div>
+
+
+                <div class="mobile-login d-lg-none">
+                    <a href="/sign-in" class="btn btn-outline-light w-100">
+                        <i class="bi bi-person" aria-hidden="true"></i>
+                        Iniciar Sesión
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    @if (_isMobileCartOpen)
+    {
+        <div class="mobile-cart-overlay" @onclick="CloseMobileCart">
+            <div class="mobile-cart-content" @onclick:stopPropagation="true">
+                <div class="mobile-cart-header">
+                    <h6 class="mobile-cart-title">
+                        <i class="bi bi-cart3" aria-hidden="true"></i>
+                        Carrito de compras
+                    </h6>
+                    <button class="btn btn-sm btn-link mobile-cart-close" 
+                            @onclick="CloseMobileCart"
+                            aria-label="Cerrar carrito">
+                        <i class="bi bi-x-lg" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="mobile-cart-body">
+                    @if (CartService.Items.Count == 0)
+                    {
+                        <div class="mobile-cart-empty">
+                            <i class="bi bi-cart-x" aria-hidden="true"></i>
+                            <p>No hay productos en el carrito</p>
+                            <small>Agrega algunos productos para continuar</small>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mobile-cart-items">
+                            @foreach (var item in CartService.Items)
+                            {
+                                <div class="mobile-cart-item" key="@item.Id">
+                                    <img src="@item.Image" 
+                                         alt="@item.Name" 
+                                         class="mobile-cart-item-image" 
+                                         loading="lazy" />
+                                    <div class="mobile-cart-item-details">
+                                        <h6 class="mobile-cart-item-name">@item.Name</h6>
+                                        <div class="mobile-cart-item-price">@item.Quantity x $@item.Price.ToString("F2")</div>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-danger mobile-remove-btn" 
+                                            @onclick="() => RemoveFromCart(item.Id)"
+                                            aria-label="Eliminar @item.Name del carrito">
+                                        <i class="bi bi-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+
+                @if (CartService.Items.Count > 0)
+                {
+                    <div class="mobile-cart-footer">
+                        <div class="mobile-cart-total">
+                            <span>Total: $@CartService.TotalPrice.ToString("F2")</span>
+                        </div>
+                        <div class="mobile-cart-actions">
+                            <a href="/checkout" class="btn btn-success btn-sm w-100 mb-2">
+                                <i class="bi bi-credit-card" aria-hidden="true"></i>
+                                Proceder al pago
+                            </a>
+                            <button class="btn btn-outline-danger btn-sm w-100" @onclick="ClearCart">
+                                <i class="bi bi-trash" aria-hidden="true"></i>
+                                Vaciar carrito
+                            </button>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="mobile-cart-footer">
+                        <button class="btn btn-primary btn-sm w-100" @onclick="GoToProducts">
+                            <i class="bi bi-shop" aria-hidden="true"></i>
+                            Ver productos
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</header>
+
+<script src="/js/navigation.js"></script>
+
+@code {
+    private bool _isMobileMenuOpen = false;
+    private bool _isMobileCartOpen = false;
+    private bool _isDesktopCartOpen = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await CartService.LoadCartFromStorage();
+            await JS.InvokeVoidAsync("initializeCartOutsideClick", DotNetObjectReference.Create(this));
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        CartService.PropertyChanged += OnCartChanged;
+    }
+
+    private void OnCartChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    private async Task NavigateToHome()
+    {
+        // Obtener la URL actual usando NavigationManager
+        var currentUrl = Navigation.Uri;
+        var baseUri = Navigation.BaseUri;
+        var relativePath = currentUrl.Replace(baseUri, "").Split('?')[0]; // Remover query parameters
+        
+        // Si estamos en la página de inicio (/), navegar al hero section
+        if (relativePath == "/" || relativePath == "")
+        {
+            // Agregar un pequeño delay para asegurar que el DOM esté listo
+            await Task.Delay(100);
+            await JS.InvokeVoidAsync("navigateToHeroSection", "inicio");
+        }
+        else
+        {
+            // Si estamos en otra página, navegar al inicio usando Blazor Navigation
+            Navigation.NavigateTo("/");
+        }
+    }
+
+    private async Task ScrollToTop()
+    {
+        await JS.InvokeVoidAsync("scrollToTopSmooth");
+    }
+
+    private async Task ScrollToSection(string sectionId)
+    {
+        await JS.InvokeVoidAsync("scrollToSection", sectionId);
+    }
+
+    private void ToggleMobileMenu()
+    {
+        _isMobileMenuOpen = !_isMobileMenuOpen;
+        if (_isMobileMenuOpen)
+        {
+            _isMobileCartOpen = false;
+        }
+    }
+
+    private void ToggleMobileCart()
+    {
+        _isMobileCartOpen = !_isMobileCartOpen;
+        if (_isMobileCartOpen)
+        {
+            _isMobileMenuOpen = false;
+        }
+    }
+
+    private async Task ToggleDesktopCart()
+    {
+        _isDesktopCartOpen = !_isDesktopCartOpen;
+        
+        if (_isDesktopCartOpen)
+        {
+            await JS.InvokeVoidAsync("openDesktopCart");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("closeDesktopCart");
+        }
+    }
+
+    private void CloseMobileCart()
+    {
+        _isMobileCartOpen = false;
+    }
+
+    private async Task CloseDesktopCart()
+    {
+        _isDesktopCartOpen = false;
+        await JS.InvokeVoidAsync("closeDesktopCart");
+    }
+
+    private async Task GoToProducts()
+    {
+        CloseMobileCart();
+        await CloseDesktopCart();
+        Navigation.NavigateTo("/productos?categoria=todo");
+    }
+
+    private async Task RemoveFromCart(int productId)
+    {
+        await CartService.RemoveItem(productId);
+    }
+
+    private async Task IncreaseQuantity(int productId)
+    {
+        await CartService.IncreaseQuantity(productId);
+    }
+
+    private async Task DecreaseQuantity(int productId)
+    {
+        await CartService.DecreaseQuantity(productId);
+    }
+
+    private async Task RemoveItemCompletely(int productId)
+    {
+        await CartService.RemoveItemCompletely(productId);
+    }
+
+    private async Task UpdateQuantityDirectly(int productId, int newQuantity)
+    {
+        if (newQuantity <= 0)
+        {
+            await CartService.RemoveItemCompletely(productId);
+        }
+        else if (newQuantity > 99)
+        {
+            await CartService.UpdateQuantity(productId, 99);
+        }
+        else
+        {
+            await CartService.UpdateQuantity(productId, newQuantity);
+        }
+    }
+
+    private async Task ClearCart()
+    {
+        await CartService.ClearCart();
+    }
+
+    public void Dispose()
+    {
+        CartService.PropertyChanged -= OnCartChanged;
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        CartService.PropertyChanged -= OnCartChanged;
+        await JS.InvokeVoidAsync("cleanupCartOutsideClick");
+        await ValueTask.CompletedTask;
+    }
+
+    [JSInvokable]
+    public async Task CloseCartFromOutside()
+    {
+        if (_isDesktopCartOpen)
+        {
+            await CloseDesktopCart();
+        }
+        if (_isMobileCartOpen)
+        {
+            CloseMobileCart();
+        }
+        StateHasChanged();
+    }
+} 

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar Email - TecnoPartes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: sparkle 4s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .tagline {
+            font-size: 16px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px 30px;
+            background: #1e1e1e;
+        }
+        
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #9b59b6, #8b7fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .message {
+            font-size: 16px;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.8;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+            color: white;
+            text-decoration: none;
+            padding: 18px 36px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .email-change-box {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(243, 156, 18, 0.3);
+        }
+        
+        .email-change-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .email-change-text {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .current-email {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1e1e1e 100%);
+            border: 2px solid #9b59b6;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.1);
+        }
+        
+        .current-email-label {
+            font-weight: 600;
+            color: #9b59b6;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .current-email-value {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .security-box {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1e1e1e 100%);
+            border: 1px solid #9b59b6;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.1);
+        }
+        
+        .security-title {
+            font-weight: 600;
+            color: #9b59b6;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+        }
+        
+        .security-icon {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        .security-text {
+            color: #b0b0b0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .steps-box {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1e1e1e 100%);
+            border-left: 4px solid #9b59b6;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .steps-title {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .step {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            color: #b0b0b0;
+        }
+        
+        .step:before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #9b59b6;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(155, 89, 182, 0.3);
+        }
+        
+        .steps-box {
+            counter-reset: step-counter;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            color: #b0b0b0;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #333333;
+        }
+        
+        .footer-text {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: inline-block;
+            margin: 0 10px;
+            color: #6c63ff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: #9f7aea;
+        }
+        
+        .expiry-notice {
+            background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+            border: 1px solid #ffc107;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
+        }
+        
+        .expiry-text {
+            color: #1a1a1a;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .security-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 10px 0;
+            box-shadow: 0 2px 8px rgba(155, 89, 182, 0.3);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 12px;
+            }
+            
+            .header, .content, .footer {
+                padding: 20px;
+            }
+            
+            .title {
+                font-size: 24px;
+            }
+            
+            .cta-button {
+                padding: 16px 28px;
+                font-size: 14px;
+            }
+            
+            .logo {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">TecnoPartes</div>
+            <div class="tagline">Tu tienda de confianza en tecnología</div>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <h1 class="title">Cambiar Dirección de Email</h1>
+            
+            <div class="security-badge">📧 Cambio de Email</div>
+            
+            <p class="message">
+                Hemos recibido una solicitud para cambiar la dirección de correo electrónico asociada a tu cuenta de TecnoPartes. Para confirmar este cambio, haz clic en el botón de abajo.
+            </p>
+            
+            <!-- Email Change Box -->
+            <div class="email-change-box">
+                <div class="email-change-title">📧 Cambio de Email</div>
+                <div class="email-change-text">
+                    Confirmación de nueva dirección de correo
+                </div>
+            </div>
+            
+            <!-- Current Email Display -->
+            <div class="current-email">
+                <div class="current-email-label">Email actual:</div>
+                <div class="current-email-value">{{ .Email }}</div>
+            </div>
+            
+            <!-- Call to Action Button -->
+            <div class="button-container">
+                <a href="{{ .ConfirmationURL }}" class="cta-button">
+                    Confirmar Cambio de Email
+                </a>
+            </div>
+            
+            <!-- Expiry Notice -->
+            <div class="expiry-notice">
+                <p class="expiry-text">
+                    ⏰ Este enlace expirará en 1 hora por seguridad.
+                </p>
+            </div>
+            
+            <!-- Security Box -->
+            <div class="security-box">
+                <div class="security-title">
+                    <span class="security-icon">🔒</span>
+                    Información de Seguridad
+                </div>
+                <div class="security-text">
+                    • Este enlace es único y solo puede usarse una vez<br>
+                    • Si no solicitaste este cambio, ignora este correo<br>
+                    • Tu email actual permanecerá sin cambios hasta que confirmes
+                </div>
+            </div>
+            
+            <!-- Steps Box -->
+            <div class="steps-box">
+                <div class="steps-title">¿Qué sucederá después de confirmar?</div>
+                <div class="step">Se enviará un correo de verificación a tu nueva dirección</div>
+                <div class="step">Deberás hacer clic en el enlace de verificación</div>
+                <div class="step">Tu email será actualizado en tu cuenta</div>
+                <div class="step">Recibirás confirmación del cambio exitoso</div>
+            </div>
+            
+            <p class="message">
+                Si no solicitaste cambiar tu dirección de email, puedes ignorar este correo de forma segura. Tu cuenta permanecerá sin cambios.
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">
+                © 2025 TecnoPartes. Todos los derechos reservados.
+            </p>
+            <p class="footer-text">
+                Este correo fue enviado a {{ .Email }}. Si tienes alguna pregunta, contáctanos.
+            </p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">Soporte</a>
+                <a href="#" class="social-link">Política de Privacidad</a>
+                <a href="#" class="social-link">Términos de Servicio</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
